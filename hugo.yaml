@@ -3,6 +3,10 @@ title: "M1L4nCh01y"
 theme: "PaperMod"
 publishDir: "docs"
 
+# 强制编译发布日期在未来（还没到）的文章，否则 hugo 默认会静默跳过它们，
+# 导致首页列表、RSS、搜索索引里找不到这篇文章（如 ch5 曾出现的问题）
+buildFuture: true
+
 # 语言设置
 # 修复点 7：Hugo v0.158 起 `languageCode` 已弃用，改名为 `locale`（构建时会有 deprecation warning）
 locale: "zh-cn"
