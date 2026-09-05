@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Agent on M1L4nCh01y</title>
+    <link>https://hyc031.github.io/tags/agent/</link>
+    <description>Recent content in Agent on M1L4nCh01y</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Sep 2026 17:00:00 +0800</lastBuildDate>
+    <atom:link href="https://hyc031.github.io/tags/agent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力</title>
+      <link>https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/</link>
+      <pubDate>Tue, 01 Sep 2026 17:00:00 +0800</pubDate>
+      <guid>https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/</guid>
+      <description>&lt;h1 id=&#34;skill-相关内容&#34;&gt;Skill 相关内容&lt;/h1&gt;
+&lt;p&gt;最近刚好在学习skill 相关内容，然后就整理了这个文档。&lt;/p&gt;
+&lt;p&gt;前置内容知识&lt;/p&gt;
+&lt;p&gt;Prompt(22-23年)  &amp;mdash;&amp;gt; 规则(Rules  23中旬) &amp;mdash;&amp;gt;Skill( 25) &amp;mdash;&amp;gt; MCP( 24年底)  &amp;mdash;&amp;gt; Harness( 26) &amp;hellip;..&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

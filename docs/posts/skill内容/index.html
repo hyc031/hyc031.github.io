@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="auto" data-theme="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力 | M1L4nCh01y</title>
+<meta name="keywords" content="Agent, Skill, 提示工程">
+<meta name="description" content="Skill 相关内容
+最近刚好在学习skill 相关内容，然后就整理了这个文档。
+前置内容知识
+Prompt(22-23年)  &mdash;&gt; 规则(Rules  23中旬) &mdash;&gt;Skill( 25) &mdash;&gt; MCP( 24年底)  &mdash;&gt; Harness( 26) &hellip;..">
+<meta name="author" content="">
+<link rel="canonical" href="https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.1d3a70ffbe052b24c9d3ba9db0cca15938e193338bf5aed575d64ec30266e7ad.css" integrity="sha256-HTpw/74FKyTJ07qdsMyhWTjhkzOL9a7VddZOwwJm560=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://hyc031.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hyc031.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hyc031.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hyc031.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hyc031.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh-cn" href="https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/">
+  <meta property="og:site_name" content="M1L4nCh01y">
+  <meta property="og:title" content="AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力">
+  <meta property="og:description" content="Skill 相关内容 最近刚好在学习skill 相关内容，然后就整理了这个文档。
+前置内容知识
+Prompt(22-23年) —&gt; 规则(Rules 23中旬) —&gt;Skill( 25) —&gt; MCP( 24年底) —&gt; Harness( 26) …..">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-09-01T17:00:00+08:00">
+    <meta property="article:modified_time" content="2026-09-01T17:00:00+08:00">
+    <meta property="article:tag" content="Agent">
+    <meta property="article:tag" content="Skill">
+    <meta property="article:tag" content="提示工程">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力">
+  <meta name="twitter:description" content="Skill 相关内容 最近刚好在学习skill 相关内容，然后就整理了这个文档。
+前置内容知识
+Prompt(22-23年) —&gt; 规则(Rules 23中旬) —&gt;Skill( 25) —&gt; MCP( 24年底) —&gt; Harness( 26) …..">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hyc031.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力",
+      "item": "https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力",
+  "name": "AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力",
+  "description": "Skill 相关内容 最近刚好在学习skill 相关内容，然后就整理了这个文档。\n前置内容知识\nPrompt(22-23年) \u0026mdash;\u0026gt; 规则(Rules 23中旬) \u0026mdash;\u0026gt;Skill( 25) \u0026mdash;\u0026gt; MCP( 24年底) \u0026mdash;\u0026gt; Harness( 26) \u0026hellip;..\n",
+  "keywords": [
+    "Agent", "Skill", "提示工程"
+  ],
+  "articleBody": "Skill 相关内容 最近刚好在学习skill 相关内容，然后就整理了这个文档。\n前置内容知识\nPrompt(22-23年) —\u003e 规则(Rules 23中旬) —\u003eSkill( 25) —\u003e MCP( 24年底) —\u003e Harness( 26) …..\n(具体时间可能存在差异)\n本次表达 —\u003e长期约束—\u003e 可复用能力—\u003e 外部工具—\u003e 运行控制\n同一件事情，每次都需要重新教AI一遍吗？\n对于重复出现问题，或者是类似重复的工作，通常可以以下做法\n将要求写入这一轮的 Prompt # 会议纪要 请阅读会议内容，再按照下面要求整理： 1. 不要编负责人 2. 没说日期就写“未知” 3. 后单独列行动项 4. 后单独列行动项 将长期规矩写入到项目文件 (撰写AGENTS.md / CLAUDE.md) 这个项目里，每次都要守: 1. 不要编负责人 2. 没说日期就写“未知” 3. 后单独列行动项 4. 后单独列行动项 将常做的任务存成可调用流程 (将一个问题的解决方法拆成 x 步，一步一步执行)： ​\t0 —\u003e 1 …..—\u003e x\n对于 skill 可以简单的理解为： Skill = 给 AI 一个 “这类工作如何完成” 的说明书\nskill 安装 在安装之前，一般要注意一些内容(总不能看到一个skill 就进行安装)\n来源(安全性如何？) 版本(不同版本可能存在差异) 落点(新增 或者覆盖哪里？) 行为(脚本会做什么？) 其中\"落点\"一般分两级：\n全局级：装在用户目录下（如 ~/.claude/skills/），所有项目都能用； 项目级：装在项目仓库里（如 .claude/skills/），只对这个项目生效，还能随 git 分享给协作者。 越通用的能力越放全局，越和项目绑定的越放项目里。\n一般的skill 目录结构：\nxxx-skill/ |---references/（需要时再读的资料） |---scripts/ （稳定执行的脚本和检查） |---assets/ （反复使用的模板和素材） |---SKILL.md （入口 + 触发说明 + 做事步骤） ..... 4 个文件或目录，只有 SKILL.md 文件是必须的，其它 3 个目录都是非必须的\nreferences/ ：参考文献的目录，里面是各种补充文档，有需要的时候再加载。\nscripts/ ：代码目录，里面是可执行的代码脚本\nassets/ ：其它材料目录，里面存放图标、模板、图片、字体等资源\nskill 是怎么被用到的：按需加载 上面把 skill 比作说明书，但 AI 的上下文窗口有限，不可能把所有说明书都背在身上。skill 的核心机制就是按需加载（渐进式披露，Progressive Disclosure），大致分三层：\n启动时：只读取每个 skill 的 name 和 description（相当于一行\"简历\"），挂在系统提示词里。单个 skill 只花几十个 token，装很多个也不心疼。 触发时：当用户的任务和某个 skill 的描述对上号，AI 才把这个 skill 的 SKILL.md 完整读进上下文，这时它才知道\"这件事具体怎么做\"。 执行中：SKILL.md 里指向的 references/ 文档、scripts/ 脚本，需要哪份再读哪份，用完就放手。 启动时： [skill A 一行简介] [skill B 一行简介] [skill C 一行简介] ← 只有几行字\r|\r| 用户说\"帮我整理会议纪要\"，和 skill B 的描述匹配上了\r↓\r触发时： 完整读入 skill B 的 SKILL.md ← 这才知道怎么做\r↓\r执行中： 要查术语了？再去读 references/glossary.md ← 用到才读 对比着理解更清楚：MCP 是把所有工具的\"封面 + 目录\"一次性塞进上下文，装多了既挤占窗口、又干扰模型选择；而 skill 平时只留一行简历，被想起时才把整本手册拿出来。\n回头看上面的目录结构，就明白它为什么长这样了：\nSKILL.md 要保持精简：只要被触发就必然全文加载，写太长等于每次触发都交一笔\"过路费\"； 细节拆到 references/：不是每次任务都用得上，按需读取就好； description 是唯一的\"门牌\"：AI 全靠它判断\"现在该不该用这个 skill\"，写得含糊，skill 就会在该出场的时候沉睡。 三个目录里都放什么 SKILL.md 之外的那三个目录，各自分工不同，放错地方会直接影响加载效率。\nreferences/ —— 给 AI 读的知识 放\"不是每次都要读，但用到时必须读准\"的资料：\n领域规范与约定：比如公司纪要格式、术语表、历史决定记录 细分场景的处理说明：SKILL.md 写主干流程，冷门分支单独成文（如\"遇到扫描件怎么办\"） 外部资料摘录：API 文档、格式定义 用法要点：\n在 SKILL.md 里写明\"什么情况读哪份\"，例如：整理英文会议时，先读 references/glossary.md 一个主题一个文件，文件名自解释，别堆成一个大杂烩 优先 Markdown 等纯文本格式，方便模型阅读 scripts/ —— 让结果确定的程序 放\"每次执行都该一模一样\"的操作：\n确定性步骤：格式转换、批量重命名、数据校验 脚手架生成：一条命令把模板工程拉起来 自检工具：交付前跑一遍校验，确认成果合格 为什么值得写脚本：让模型即兴发挥，十次可能有两次出错；脚本写好一次，之后每次都是同样的执行。而且脚本在 SKILL.md 里只占一行调用说明，跑完只把结果带回上下文——比让模型一步步生成省 token，也更稳。\n写脚本时注意：报错信息要清晰（失败了 AI 才知道怎么纠正），尽量幂等（重复跑不会把事情搞坏）。\nassets/ —— 拿来就用的素材 放\"不是给 AI 读、而是给 AI 用来产出成果\"的文件：\n模板：PPT 母版、周报模板、网页 boilerplate 品牌素材：logo、字体、配色 参考样例：一份\"合格交付物长什么样\" 和 references 的区别一句话：references 的内容要读进上下文（花 token），assets 的东西是直接复制、修改去用（不进上下文，不花 token）。能做成模板的，就别写成说明书让模型每次现场发挥。\n一张表分清 目录 放什么 怎么被用 占不占上下文 references/ 知识、规范、细分说明 按需读取 读哪份，哪份占 scripts/ 确定性流程的脚本 按需执行，只回传结果 只占一行调用说明 assets/ 模板、素材、字体 复制/引用去产出 基本不占 skill 设计与封装 设计前，先回答 5 个问题 用户怎么说，它才出现？（触发条件） 开始前拿到什么，最后交什么？（输入与输出） 中间按什么顺序做？（步骤） 哪些资料、程序或工具会被用到？（references / scripts / assets） 做不下去或可能越权时，怎么停、怎么报、怎么验？（边界与验证） 这 5 个问题的答案填进模板，基本就是一份可用的 SKILL.md。\n一个最小的 SKILL.md 骨架 还是以前面\"整理会议纪要\"为例，把 5 个问题的答案落进去：\n--- name: meeting-notes description: 把会议记录整理成纪要。当用户给出会议内容并要求\"整理纪要、列行动项\"时使用 --- # 会议纪要整理 ## 输入与输出 - 输入：用户提供的会议记录（转写稿、聊天记录等） - 输出：一份纪要，包含 概要 / 要点 / 行动项（负责人、期限） ## 步骤 1. 通读记录，标出时间、人员、结论 2. 没说日期的一律写\"未知\"，不要编造负责人 3. 行动项单独列一节，格式固定：事项 / 负责人 / 期限 4. 拿不准的术语或缩写，查阅 references/glossary.md ## 边界 - 信息不足以判断的内容，标\"待确认\"，不要脑补 - 涉及薪酬、人事评价等敏感内容时，先停下来向用户确认，再决定写不写 对照着看：description 回答问题 1（什么时候出场），“输入与输出” 回答问题 2，“步骤” 回答问题 3 和 4，“边界” 回答问题 5。步骤 4 提到的术语表，就该躺在 references/ 里；如果还想附带一份行动项表格模板，那可以放进 assets/。\n几条设计原则 一个 skill 只做一件事。长大了宁可拆成几个小 skill，触发也更准。 description 写\"什么时候用\"，而不只是\"是什么\"。它是按需加载机制里唯一的触发依据。 SKILL.md 保持精简，细节外移。主干步骤写进 SKILL.md，知识放 references/，确定性流程放 scripts/，模板素材放 assets/。 边界要写清楚。做不下去时怎么停、怎么向用户报告、怎么验证结果，提前写死比事后补救便宜。 到这里，skill 的图景就完整了：它不是更聪明的模型，也不是更强的工具，而是把\"这类工作怎么做\"的经验固化成一页纸，在合适的时机被想起、被翻开。\n",
+  "wordCount" : "3207",
+  "inLanguage": "zh-cn",
+  "datePublished": "2026-09-01T17:00:00+08:00",
+  "dateModified": "2026-09-01T17:00:00+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hyc031.github.io/posts/skill%E5%86%85%E5%AE%B9/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "M1L4nCh01y",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hyc031.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://hyc031.github.io/" accesskey="h" title="M1L4nCh01y (Alt + H)">M1L4nCh01y</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://hyc031.github.io/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hyc031.github.io/notes/" title="随笔">
+                    <span>随笔</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hyc031.github.io/archives/" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hyc031.github.io/search/" title="搜索 (Alt &#43; /)" accesskey=/>
+                    <span>搜索</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Agent Skill 入门：用一份 SKILL.md 让智能体学会新能力
+    </h1>
+    <div class="post-meta">
+
+<span title='2026-09-01 17:00:00 +0800 CST'>September 1, 2026</span>&nbsp;·&nbsp;<span>7 min</span>
+
+</div>
+  </header> <details class="toc"  open>
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#skill-%e7%9b%b8%e5%85%b3%e5%86%85%e5%ae%b9" aria-label="Skill 相关内容">Skill 相关内容</a><ul>
+                    
+            <li>
+                <a href="#skill-%e5%ae%89%e8%a3%85" aria-label="skill 安装">skill 安装</a></li>
+            <li>
+                <a href="#skill-%e6%98%af%e6%80%8e%e4%b9%88%e8%a2%ab%e7%94%a8%e5%88%b0%e7%9a%84%e6%8c%89%e9%9c%80%e5%8a%a0%e8%bd%bd" aria-label="skill 是怎么被用到的：按需加载">skill 是怎么被用到的：按需加载</a></li>
+            <li>
+                <a href="#%e4%b8%89%e4%b8%aa%e7%9b%ae%e5%bd%95%e9%87%8c%e9%83%bd%e6%94%be%e4%bb%80%e4%b9%88" aria-label="三个目录里都放什么">三个目录里都放什么</a><ul>
+                    
+            <li>
+                <a href="#references--%e7%bb%99-ai-%e8%af%bb%e7%9a%84%e7%9f%a5%e8%af%86" aria-label="references/ —— 给 AI 读的知识">references/ —— 给 AI 读的知识</a></li>
+            <li>
+                <a href="#scripts--%e8%ae%a9%e7%bb%93%e6%9e%9c%e7%a1%ae%e5%ae%9a%e7%9a%84%e7%a8%8b%e5%ba%8f" aria-label="scripts/ —— 让结果确定的程序">scripts/ —— 让结果确定的程序</a></li>
+            <li>
+                <a href="#assets--%e6%8b%bf%e6%9d%a5%e5%b0%b1%e7%94%a8%e7%9a%84%e7%b4%a0%e6%9d%90" aria-label="assets/ —— 拿来就用的素材">assets/ —— 拿来就用的素材</a></li>
+            <li>
+                <a href="#%e4%b8%80%e5%bc%a0%e8%a1%a8%e5%88%86%e6%b8%85" aria-label="一张表分清">一张表分清</a></li></ul>
+            </li>
+            <li>
+                <a href="#skill-%e8%ae%be%e8%ae%a1%e4%b8%8e%e5%b0%81%e8%a3%85" aria-label="skill 设计与封装">skill 设计与封装</a><ul>
+                    
+            <li>
+                <a href="#%e8%ae%be%e8%ae%a1%e5%89%8d%e5%85%88%e5%9b%9e%e7%ad%94-5-%e4%b8%aa%e9%97%ae%e9%a2%98" aria-label="设计前，先回答 5 个问题">设计前，先回答 5 个问题</a></li>
+            <li>
+                <a href="#%e4%b8%80%e4%b8%aa%e6%9c%80%e5%b0%8f%e7%9a%84-skillmd-%e9%aa%a8%e6%9e%b6" aria-label="一个最小的 SKILL.md 骨架">一个最小的 SKILL.md 骨架</a></li>
+            <li>
+                <a href="#%e5%87%a0%e6%9d%a1%e8%ae%be%e8%ae%a1%e5%8e%9f%e5%88%99" aria-label="几条设计原则">几条设计原则</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="skill-相关内容">Skill 相关内容<a hidden class="anchor" aria-hidden="true" href="#skill-相关内容">#</a></h1>
+<p>最近刚好在学习skill 相关内容，然后就整理了这个文档。</p>
+<p>前置内容知识</p>
+<p>Prompt(22-23年)  &mdash;&gt; 规则(Rules  23中旬) &mdash;&gt;Skill( 25) &mdash;&gt; MCP( 24年底)  &mdash;&gt; Harness( 26) &hellip;..</p>
+<p>(具体时间可能存在差异)</p>
+<p>本次表达 &mdash;&gt;长期约束&mdash;&gt; 可复用能力&mdash;&gt;  外部工具&mdash;&gt;  运行控制</p>
+<p>同一件事情，每次都需要重新教AI一遍吗？</p>
+<p>对于重复出现问题，或者是类似重复的工作，通常可以以下做法</p>
+<ol>
+<li>将要求写入这一轮的 Prompt</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 会议纪要
+</span></span><span style="display:flex;"><span>请阅读会议内容，再按照下面要求整理：
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">1.</span> 不要编负责人
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">2.</span> 没说日期就写“未知”
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">3.</span> 后单独列行动项
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">4.</span> 后单独列行动项
+</span></span></code></pre></div><ol start="2">
+<li>将长期规矩写入到项目文件  (撰写AGENTS.md / CLAUDE.md)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>这个项目里，每次都要守:
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">1.</span> 不要编负责人
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">2.</span> 没说日期就写“未知”
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">3.</span> 后单独列行动项
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">4.</span> 后单独列行动项
+</span></span></code></pre></div><ol start="3">
+<li>将常做的任务存成可调用流程 (将一个问题的解决方法拆成 x 步，一步一步执行)：</li>
+</ol>
+<p>​					0 &mdash;&gt; 1 &hellip;..&mdash;&gt; x</p>
+<p>对于 skill 可以简单的理解为： Skill = 给 AI 一个 &ldquo;这类工作如何完成&rdquo; 的说明书</p>
+<p><img alt="skill01" decoding="async" loading="lazy" src="./images/skill/skill01.png" style="max-width: 100%; height: auto;"></p>
+<h2 id="skill-安装">skill 安装<a hidden class="anchor" aria-hidden="true" href="#skill-安装">#</a></h2>
+<p>在安装之前，一般要注意一些内容(总不能看到一个skill 就进行安装)</p>
+<ol>
+<li>来源(安全性如何？)</li>
+<li>版本(不同版本可能存在差异)</li>
+<li>落点(新增 或者覆盖哪里？)</li>
+<li>行为(脚本会做什么？)</li>
+</ol>
+<p>其中&quot;落点&quot;一般分两级：</p>
+<ul>
+<li>全局级：装在用户目录下（如 <code>~/.claude/skills/</code>），所有项目都能用；</li>
+<li>项目级：装在项目仓库里（如 <code>.claude/skills/</code>），只对这个项目生效，还能随 git 分享给协作者。</li>
+</ul>
+<p>越通用的能力越放全局，越和项目绑定的越放项目里。</p>
+<p>一般的skill 目录结构：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>xxx-skill/
+</span></span><span style="display:flex;"><span>|---references/（需要时再读的资料）
+</span></span><span style="display:flex;"><span>|---scripts/  （稳定执行的脚本和检查）
+</span></span><span style="display:flex;"><span>|---assets/ （反复使用的模板和素材）
+</span></span><span style="display:flex;"><span>|---SKILL.md （入口 + 触发说明 + 做事步骤）
+</span></span><span style="display:flex;"><span>.....
+</span></span></code></pre></div><p><code>4</code> 个文件或目录，只有 <code>SKILL.md</code> 文件是必须的，其它 <code>3</code> 个目录都是非必须的</p>
+<p><code>references/</code> ：参考文献的目录，里面是各种补充文档，<strong>有需要的时候再加载</strong>。</p>
+<p><code>scripts/</code> ：代码目录，里面是可执行的代码脚本</p>
+<p><code>assets/</code> ：其它材料目录，里面存放图标、模板、图片、字体等资源</p>
+<h2 id="skill-是怎么被用到的按需加载">skill 是怎么被用到的：按需加载<a hidden class="anchor" aria-hidden="true" href="#skill-是怎么被用到的按需加载">#</a></h2>
+<p>上面把 skill 比作说明书，但 AI 的上下文窗口有限，不可能把所有说明书都背在身上。skill 的核心机制就是<strong>按需加载（渐进式披露，Progressive Disclosure）</strong>，大致分三层：</p>
+<ol>
+<li><strong>启动时</strong>：只读取每个 skill 的 <code>name</code> 和 <code>description</code>（相当于一行&quot;简历&quot;），挂在系统提示词里。单个 skill 只花几十个 token，装很多个也不心疼。</li>
+<li><strong>触发时</strong>：当用户的任务和某个 skill 的描述对上号，AI 才把这个 skill 的 <code>SKILL.md</code> 完整读进上下文，这时它才知道&quot;这件事具体怎么做&quot;。</li>
+<li><strong>执行中</strong>：<code>SKILL.md</code> 里指向的 <code>references/</code> 文档、<code>scripts/</code> 脚本，需要哪份再读哪份，用完就放手。</li>
+</ol>
+<pre tabindex="0"><code>启动时：  [skill A 一行简介] [skill B 一行简介] [skill C 一行简介]   ← 只有几行字
+              |
+              |   用户说&#34;帮我整理会议纪要&#34;，和 skill B 的描述匹配上了
+              ↓
+触发时：  完整读入 skill B 的 SKILL.md                               ← 这才知道怎么做
+              ↓
+执行中：  要查术语了？再去读 references/glossary.md                   ← 用到才读
+</code></pre><p>对比着理解更清楚：MCP 是把所有工具的&quot;封面 + 目录&quot;一次性塞进上下文，装多了既挤占窗口、又干扰模型选择；而 skill 平时只留一行简历，被想起时才把整本手册拿出来。</p>
+<p>回头看上面的目录结构，就明白它为什么长这样了：</p>
+<ul>
+<li><code>SKILL.md</code> 要保持精简：只要被触发就必然<strong>全文加载</strong>，写太长等于每次触发都交一笔&quot;过路费&quot;；</li>
+<li>细节拆到 <code>references/</code>：不是每次任务都用得上，按需读取就好；</li>
+<li><code>description</code> 是唯一的&quot;门牌&quot;：AI 全靠它判断&quot;现在该不该用这个 skill&quot;，写得含糊，skill 就会在该出场的时候沉睡。</li>
+</ul>
+<h2 id="三个目录里都放什么">三个目录里都放什么<a hidden class="anchor" aria-hidden="true" href="#三个目录里都放什么">#</a></h2>
+<p><code>SKILL.md</code> 之外的那三个目录，各自分工不同，放错地方会直接影响加载效率。</p>
+<h3 id="references--给-ai-读的知识">references/ —— 给 AI 读的知识<a hidden class="anchor" aria-hidden="true" href="#references--给-ai-读的知识">#</a></h3>
+<p>放&quot;不是每次都要读，但用到时必须读准&quot;的资料：</p>
+<ul>
+<li>领域规范与约定：比如公司纪要格式、术语表、历史决定记录</li>
+<li>细分场景的处理说明：SKILL.md 写主干流程，冷门分支单独成文（如&quot;遇到扫描件怎么办&quot;）</li>
+<li>外部资料摘录：API 文档、格式定义</li>
+</ul>
+<p>用法要点：</p>
+<ol>
+<li>在 SKILL.md 里写明&quot;什么情况读哪份&quot;，例如：整理英文会议时，先读 references/glossary.md</li>
+<li>一个主题一个文件，文件名自解释，别堆成一个大杂烩</li>
+<li>优先 Markdown 等纯文本格式，方便模型阅读</li>
+</ol>
+<h3 id="scripts--让结果确定的程序">scripts/ —— 让结果确定的程序<a hidden class="anchor" aria-hidden="true" href="#scripts--让结果确定的程序">#</a></h3>
+<p>放&quot;每次执行都该一模一样&quot;的操作：</p>
+<ul>
+<li>确定性步骤：格式转换、批量重命名、数据校验</li>
+<li>脚手架生成：一条命令把模板工程拉起来</li>
+<li>自检工具：交付前跑一遍校验，确认成果合格</li>
+</ul>
+<p>为什么值得写脚本：让模型即兴发挥，十次可能有两次出错；脚本写好一次，之后每次都是同样的执行。而且脚本在 SKILL.md 里只占一行调用说明，跑完只把结果带回上下文——比让模型一步步生成省 token，也更稳。</p>
+<p>写脚本时注意：报错信息要清晰（失败了 AI 才知道怎么纠正），尽量幂等（重复跑不会把事情搞坏）。</p>
+<h3 id="assets--拿来就用的素材">assets/ —— 拿来就用的素材<a hidden class="anchor" aria-hidden="true" href="#assets--拿来就用的素材">#</a></h3>
+<p>放&quot;不是给 AI 读、而是给 AI 用来产出成果&quot;的文件：</p>
+<ul>
+<li>模板：PPT 母版、周报模板、网页 boilerplate</li>
+<li>品牌素材：logo、字体、配色</li>
+<li>参考样例：一份&quot;合格交付物长什么样&quot;</li>
+</ul>
+<p>和 references 的区别一句话：references 的内容要<strong>读进上下文</strong>（花 token），assets 的东西是<strong>直接复制、修改去用</strong>（不进上下文，不花 token）。能做成模板的，就别写成说明书让模型每次现场发挥。</p>
+<h3 id="一张表分清">一张表分清<a hidden class="anchor" aria-hidden="true" href="#一张表分清">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>目录</th>
+          <th>放什么</th>
+          <th>怎么被用</th>
+          <th>占不占上下文</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>references/</code></td>
+          <td>知识、规范、细分说明</td>
+          <td>按需<strong>读取</strong></td>
+          <td>读哪份，哪份占</td>
+      </tr>
+      <tr>
+          <td><code>scripts/</code></td>
+          <td>确定性流程的脚本</td>
+          <td>按需<strong>执行</strong>，只回传结果</td>
+          <td>只占一行调用说明</td>
+      </tr>
+      <tr>
+          <td><code>assets/</code></td>
+          <td>模板、素材、字体</td>
+          <td><strong>复制/引用</strong>去产出</td>
+          <td>基本不占</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="skill-设计与封装">skill 设计与封装<a hidden class="anchor" aria-hidden="true" href="#skill-设计与封装">#</a></h2>
+<h3 id="设计前先回答-5-个问题">设计前，先回答 5 个问题<a hidden class="anchor" aria-hidden="true" href="#设计前先回答-5-个问题">#</a></h3>
+<ol>
+<li>用户怎么说，它才出现？（触发条件）</li>
+<li>开始前拿到什么，最后交什么？（输入与输出）</li>
+<li>中间按什么顺序做？（步骤）</li>
+<li>哪些资料、程序或工具会被用到？（references / scripts / assets）</li>
+<li>做不下去或可能越权时，怎么停、怎么报、怎么验？（边界与验证）</li>
+</ol>
+<p>这 5 个问题的答案填进模板，基本就是一份可用的 SKILL.md。</p>
+<h3 id="一个最小的-skillmd-骨架">一个最小的 SKILL.md 骨架<a hidden class="anchor" aria-hidden="true" href="#一个最小的-skillmd-骨架">#</a></h3>
+<p>还是以前面&quot;整理会议纪要&quot;为例，把 5 个问题的答案落进去：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>name: meeting-notes
+</span></span><span style="display:flex;"><span>description: 把会议记录整理成纪要。当用户给出会议内容并要求&#34;整理纪要、列行动项&#34;时使用
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 会议纪要整理
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 输入与输出
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 输入：用户提供的会议记录（转写稿、聊天记录等）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 输出：一份纪要，包含 概要 / 要点 / 行动项（负责人、期限）
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 步骤
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> 通读记录，标出时间、人员、结论
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> 没说日期的一律写&#34;未知&#34;，不要编造负责人
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> 行动项单独列一节，格式固定：事项 / 负责人 / 期限
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> 拿不准的术语或缩写，查阅 references/glossary.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 边界
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 信息不足以判断的内容，标&#34;待确认&#34;，不要脑补
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 涉及薪酬、人事评价等敏感内容时，先停下来向用户确认，再决定写不写
+</span></span></code></pre></div><p>对照着看：<code>description</code> 回答问题 1（什么时候出场），&ldquo;输入与输出&rdquo; 回答问题 2，&ldquo;步骤&rdquo; 回答问题 3 和 4，&ldquo;边界&rdquo; 回答问题 5。步骤 4 提到的术语表，就该躺在 references/ 里；如果还想附带一份行动项表格模板，那可以放进 assets/。</p>
+<h3 id="几条设计原则">几条设计原则<a hidden class="anchor" aria-hidden="true" href="#几条设计原则">#</a></h3>
+<ol>
+<li><strong>一个 skill 只做一件事</strong>。长大了宁可拆成几个小 skill，触发也更准。</li>
+<li><strong>description 写&quot;什么时候用&quot;，而不只是&quot;是什么&quot;</strong>。它是按需加载机制里唯一的触发依据。</li>
+<li><strong>SKILL.md 保持精简，细节外移</strong>。主干步骤写进 SKILL.md，知识放 <code>references/</code>，确定性流程放 <code>scripts/</code>，模板素材放 <code>assets/</code>。</li>
+<li><strong>边界要写清楚</strong>。做不下去时怎么停、怎么向用户报告、怎么验证结果，提前写死比事后补救便宜。</li>
+</ol>
+<p>到这里，skill 的图景就完整了：它不是更聪明的模型，也不是更强的工具，而是把&quot;这类工作怎么做&quot;的经验固化成一页纸，在合适的时机被想起、被翻开。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hyc031.github.io/tags/agent/">Agent</a></li>
+      <li><a href="https://hyc031.github.io/tags/skill/">Skill</a></li>
+      <li><a href="https://hyc031.github.io/tags/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/">提示工程</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://hyc031.github.io/">M1L4nCh01y</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
