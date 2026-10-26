@@ -33,8 +33,19 @@
       {{- $src = printf "%s#%s" $src . -}}
     {{- end -}}
   {{- else -}}
-    {{- /* 如果找不到，保持原始路径（static 目录） */ -}}
-    {{- $src = $u.String -}}
+    {{- /* 资源和 assets 里都没有时，按“所属 section”解析相对路径。
+           原因：content/posts/images/x.png 会被 Hugo 发布到 /posts/images/x.png，
+           但浏览器是相对页面 URL（/posts/文章名/）解析的，原样输出必然 404。
+           以 / 或 .. 开头的路径保持原样，交给浏览器处理。 */ -}}
+    {{- $sectionPath := "" -}}
+    {{- with .Page.CurrentSection -}}
+      {{- $sectionPath = .RelPermalink -}}
+    {{- end -}}
+    {{- if and $sectionPath (not (hasPrefix $path "/")) (not (hasPrefix $path "..")) -}}
+      {{- $src = printf "%s%s" $sectionPath $path -}}
+    {{- else -}}
+      {{- $src = $u.String -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 
