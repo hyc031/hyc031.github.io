@@ -74,21 +74,9 @@
     }
 }
 
-/* 图标悬浮高亮 */
+/* 图标悬浮高亮：统一走前景色，不再使用品牌色 */
 .social-icons svg:hover {
     transition: 0.15s;
-}
-
-.social-icons a[href*='mailto']:hover svg {
-    color: #ea4335 !important;
-}
-
-.social-icons a[href*='github']:hover svg {
-    color: #7c3aed !important;
-}
-
-.social-icons a[href*='index.xml']:hover svg {
-    color: #ff6600 !important;
 }
 
 /* === 文章列表左右布局样式 === */

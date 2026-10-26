@@ -153,6 +153,38 @@
     color: var(--tertiary);
 }
 
+/* 仓库与联系方式：图标 + 文字入口 */
+.hero-social {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px;
+    margin-top: 16px;
+}
+
+.hero-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    color: var(--secondary);
+    text-decoration: none;
+    transition: color 0.3s var(--ease), transform 0.5s var(--ease);
+}
+
+.hero-social a:hover {
+    color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.hero-social svg {
+    height: 18px;
+    width: 18px;
+    flex-shrink: 0;
+}
+
 /* ---------- 标语揭示 ---------- */
 .tagline {
     padding: 96px 0;

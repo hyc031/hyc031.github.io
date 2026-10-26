@@ -117,8 +117,12 @@ params:
   # 修复点 5：清理列表项之间含空白字符的空行，避免严格 YAML 解析器/格式化器误判
   socialIcons:
     - name: "github"
+      title: "GitHub 仓库"
+      label: "GitHub"
       url: "https://github.com/hyc031"
     - name: "email"
+      title: "邮箱"
+      label: "邮箱"
       url: "mailto:youlic310@outlook.com"
 
   # 目录配置 (Table of Contents)

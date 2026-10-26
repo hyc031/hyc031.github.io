@@ -35,6 +35,19 @@
     <span>最近更新 {{ . }}</span>
     {{- end }}
   </p>
+
+  {{- /* 仓库与联系方式入口，数据取自 hugo.yaml 的 socialIcons */}}
+  {{- with site.Params.socialIcons }}
+  <div class="hero-social">
+    {{- range . }}
+    <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+      title="{{ .title | default .name }}">
+      {{- partial "svg.html" . }}
+      <span>{{ .label | default (.name | title) }}</span>
+    </a>
+    {{- end }}
+  </div>
+  {{- end }}
 </section>
 {{- end }}
 
