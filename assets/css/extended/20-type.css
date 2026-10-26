@@ -1,0 +1,370 @@
+/* ==========================================================================
+   20-type.css — 全局排版层
+   字体、色彩令牌、导航、正文与代码块。所有页面共用。
+   ========================================================================== */
+
+/* ---------- 自托管字体（latin 子集，CJK 走系统字体） ---------- */
+@font-face {
+    font-family: "Manrope";
+    src: url("/fonts/manrope.woff2") format("woff2");
+    font-weight: 400 700;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    src: url("/fonts/geist-mono.woff2") format("woff2");
+    font-weight: 400 600;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+        U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191,
+        U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------- 设计令牌 ---------- */
+:root {
+    --font-sans: "Manrope", "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei",
+        "Noto Sans SC", "Source Han Sans SC", system-ui, sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, "JetBrains Mono",
+        Consolas, monospace;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --muted-ink: rgba(17, 17, 17, 0.28);
+
+    --theme: #ffffff;
+    --entry: #ffffff;
+    --primary: #111111;
+    --secondary: #6f6f6f;
+    --tertiary: #e6e6e6;
+    --content: #1c1c1c;
+    --border: #ececec;
+    --code-bg: #f6f6f6;
+    --code-block-bg: #161616;
+
+    --radius: 12px;
+    --main-width: 720px;
+    --nav-width: 1080px;
+    --gap: 24px;
+    --content-gap: 20px;
+}
+
+:root[data-theme="dark"] {
+    --muted-ink: rgba(242, 242, 242, 0.3);
+
+    --theme: #181818;
+    --entry: #1f1f1f;
+    --primary: #f2f2f2;
+    --secondary: #9b9b9b;
+    --tertiary: #313131;
+    --content: #d6d6d6;
+    --border: #313131;
+    --code-bg: #1f1f1f;
+    --code-block-bg: #000000;
+}
+
+/* ---------- 基础排版 ---------- */
+body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* 列表页统一用底色，去掉 PaperMod 默认的灰色块 */
+.list {
+    background: var(--theme);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+p,
+li,
+.toc,
+.entry-content {
+    text-wrap: pretty;
+}
+
+a {
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+::selection {
+    background: var(--primary);
+    color: var(--theme);
+}
+
+/* ---------- 导航：悬浮胶囊 ---------- */
+.header {
+    position: sticky;
+    top: 12px;
+    z-index: 30;
+    margin-top: 12px;
+    padding: 0 24px;
+}
+
+.header-nav {
+    max-width: var(--nav-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    line-height: 56px;
+    flex-wrap: nowrap;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--theme);
+    background: color-mix(in srgb, var(--theme) 82%, transparent);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.header-nav:hover {
+    border-color: var(--tertiary);
+}
+
+.logo a {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.logo {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+
+.logo a img,
+.logo a svg {
+    border-radius: 6px;
+}
+
+.theme-toggle {
+    color: var(--secondary);
+    transition: color 0.3s var(--ease);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    color: var(--primary);
+}
+
+.menu {
+    column-gap: 24px;
+    min-width: 0;
+    scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar {
+    display: none;
+}
+
+.menu a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+    transition: color 0.3s var(--ease);
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+    color: var(--primary);
+}
+
+.menu .active {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* 焦点可见性：键盘可达 */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* 锚点滚动时避开吸顶导航 */
+:target {
+    scroll-margin-top: 96px;
+}
+
+/* ---------- 文章页 ---------- */
+.post-title {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+}
+
+.post-content {
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.post-content a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-decoration-color: var(--tertiary);
+    transition: text-decoration-color 0.3s var(--ease);
+}
+
+.post-content a:hover {
+    text-decoration-color: var(--primary);
+}
+
+.post-content blockquote {
+    border-inline-start: none;
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 16px 24px;
+    color: var(--secondary);
+}
+
+.post-content img {
+    border-radius: 8px;
+}
+
+/* 行内代码与代码块 */
+code,
+pre,
+kbd,
+samp {
+    font-family: var(--font-mono);
+    font-size: 14px;
+}
+
+.post-content code {
+    border-radius: 6px;
+}
+
+.post-content pre code {
+    font-size: 14px;
+    line-height: 24px;
+}
+
+/* 文章元信息 */
+.post-meta,
+.entry-footer {
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+/* ---------- 页脚 ---------- */
+.footer {
+    font-size: 14px;
+    color: var(--secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 64px;
+}
+
+.footer a {
+    color: var(--secondary);
+    transition: color 0.3s var(--ease);
+}
+
+.footer a:hover {
+    color: var(--primary);
+}
+
+.top-link {
+    font-size: 12px;
+    border-radius: 999px;
+}
+
+/* ---------- 交互状态 ---------- */
+.btn,
+.menu a,
+.theme-toggle,
+.social-icons a {
+    transition-timing-function: var(--ease);
+}
+
+/* ---------- 响应式 ---------- */
+@media screen and (max-width: 768px) {
+    .header {
+        top: 8px;
+        margin-top: 8px;
+        padding: 0 12px;
+    }
+
+    .header-nav {
+        padding: 0 16px;
+        line-height: 48px;
+        border-radius: 16px;
+    }
+
+    .logo a {
+        font-size: 16px;
+    }
+
+    .menu {
+        column-gap: 16px;
+    }
+
+    .menu a {
+        font-size: 14px;
+    }
+
+    .post-title,
+    .page-header h1 {
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    :target {
+        scroll-margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .header-nav {
+        padding: 0 12px;
+        line-height: 44px;
+    }
+
+    .logo a {
+        font-size: 14px;
+    }
+
+    .menu {
+        column-gap: 12px;
+    }
+
+    .menu a {
+        font-size: 12px;
+    }
+}
+
+/* ---------- 动效偏好 ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

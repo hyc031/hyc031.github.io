@@ -2,6 +2,7 @@
 title: "大模型的相关内容"
 date: 2026-05-21T22:30:00+08:00
 draft: false
+featured: true
 ---
 
 

@@ -84,7 +84,7 @@ params:
 
   env: production # 环境
   title: "HYC 的博客"
-  description: "一些学习过程中的笔记"
+  description: "记录大模型推理、微调与 Agent 工程实践的个人笔记"
   keywords: [Blog, Hugo, PaperMod]
   # author: "HuaiyuanChen"
   
@@ -124,3 +124,39 @@ params:
   # 目录配置 (Table of Contents)
   # 在文章里根据你的 # ## ### 自动生成右侧悬浮目录
   TocOpen: true # 是否默认展开目录
+
+  # ==========================================================================
+  # 首页自定义内容（由 layouts/index.html 读取）
+  # 改文案只需要动这里，不用碰模板
+  # ==========================================================================
+  homeHero:
+    eyebrow: "大模型工程笔记"
+    titleLine1: "把大模型拆开，"
+    titleLine2: "再按自己的方式装回去"
+    subtitle: "从 LLaMA2 的注意力实现，到 vLLM 推理调优与 MoE 微调。这里记录我真正跑过的实验、踩过的坑，以及最后跑通的那一版代码。"
+    primaryText: "读技术笔记"
+    primaryUrl: "/posts/"
+    secondaryText: "翻翻随笔"
+    secondaryUrl: "/notes/"
+
+  # 首页中部的大字标语，按字符逐个点亮
+  homeTagline: "读懂一层原理，就少一次盲目的调参。"
+
+  # 学习方向卡片，顺序即优先级
+  homeDirections:
+    - index: "01"
+      title: "推理与部署"
+      desc: "把权重装进 vLLM，调 batch、调 KV Cache、调显存，让单机四张 3090 跑出能用的吞吐。"
+      tags: ["vLLM", "GPTQ", "KV Cache"]
+    - index: "02"
+      title: "微调与对齐"
+      desc: "用 LLaMA-Factory 做 QLoRA，从数据配比到 loss 曲线，逐步把通用模型拉向具体任务。"
+      tags: ["QLoRA", "SFT", "LLaMA-Factory"]
+    - index: "03"
+      title: "Agent 与工具调用"
+      desc: "给模型一套工具和一份 SKILL.md，观察它如何规划、调用，以及在哪里开始出错。"
+      tags: ["Function Calling", "SKILL.md", "上下文工程"]
+    - index: "04"
+      title: "架构与长上下文"
+      desc: "MoE 的专家路由、混合注意力、长上下文外推，读论文也读实现，两边对着看。"
+      tags: ["MoE", "Gated DeltaNet", "262K"]
